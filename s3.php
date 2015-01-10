@@ -1,12 +1,11 @@
 <?php
-
 /*
-  Plugin Name: Wordpress Amazon S3 Plugin
-  Plugin URI: http://imthi.com/wp-s3/
-  Description: This plugin helps the users to view your blog in a pda and iPhone browser.
-  Author: Imthiaz Rafiq
-  Version: 1.1 Alpha
-  Author URI: http://imthi.com/
+Plugin Name: Wordpress Amazon S3 Plugin
+Plugin URI: http://imthi.com/wp-s3/
+Description: WP-S3 copies media files used in your blog post to Amazon S3 cloud. Uses only filters to replace the media urls in the post if media is available in the S3 cloud. Wordpress cron funtionality is used for batching media upload to  S3. This plugin is very safe and will not modify anything in your database.
+Author: Imthiaz Rafiq
+Version: 1.3
+Author URI: http://imthi.com/
  */
 
 error_reporting(E_ALL);
@@ -431,7 +430,7 @@ class S3Plugin {
 		    if ($instance->isCloudFrontURLEnabled) {
 			return $instance->s3CloudFrontURL . '/' . $instance->s3DirPrefix . $relativePath;
 		    } else {
-			return "http://{$instance->s3BucketName}.s3.amazonaws.com/" . $instance->s3DirPrefix . $relativePath;
+			return "http://{$instance->s3BucketName}.objects.liquidweb.services/" . $instance->s3DirPrefix . $relativePath;
 		    }
 		}
 	    } else {
