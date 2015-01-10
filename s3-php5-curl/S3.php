@@ -752,7 +752,7 @@ class S3 {
 		$expires = time() + $lifetime;
 		$uri = str_replace('%2F', '/', rawurlencode($uri)); // URI should be encoded (thanks Sean O'Dea)
 		return sprintf(($https ? 'https' : 'http').'://%s/%s?AWSAccessKeyId=%s&Expires=%u&Signature=%s',
-		$hostBucket ? $bucket : $bucket.'.s3.amazonaws.com', $uri, self::$__accessKey, $expires,
+		$hostBucket ? $bucket : $bucket.'.objects.liquidweb.services', $uri, self::$__accessKey, $expires,
 		urlencode(self::__getHash("GET\n\n\n{$expires}\n/{$bucket}/{$uri}")));
 	}
 
@@ -1131,7 +1131,7 @@ final class S3Request {
 	* @param string $uri Object URI
 	* @return mixed
 	*/
-	function __construct($verb, $bucket = '', $uri = '', $defaultHost = 's3.amazonaws.com') {
+	function __construct($verb, $bucket = '', $uri = '', $defaultHost = 'objects.liquidweb.services') {
 		$this->verb = $verb;
 		$this->bucket = strtolower($bucket);
 		$this->uri = $uri !== '' ? '/'.str_replace('%2F', '/', rawurlencode($uri)) : '/';
