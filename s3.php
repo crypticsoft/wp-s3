@@ -383,7 +383,8 @@ class S3Plugin {
 			if (is_dir($path)) {
 			    $directoryFiles = $this->scanDirectoryRecursively($path, $filter, $directoryFiles);
 			} elseif (is_file($path)) {
-			    $extension = strtolower(end(explode('.', $path)));
+				$value = explode('.',$path);
+				$extension = strtolower(array_pop($value));
 			    if (in_array($extension, $extensionToInclude)) {
 				$directoryFiles[] = str_replace(ABSPATH, '', $path);
 			    }
