@@ -326,7 +326,8 @@ class S3Plugin {
     function script_loader_src($scriptURL) {
 	if (!is_admin()) {
 	    $urlParts = parse_url($scriptURL);
-	    $justURL = $urlParts['scheme'] . '://' . $urlParts['host'] . $urlParts['path'];
+	    $urlScheme = array_key_exists('scheme', $urlParts) ? $urlParts['scheme'] . ':' : '';
+	    $justURL = $urlScheme . '//' . $urlParts['host'] . $urlParts['path'];
 	    $fileCDNURL = self::getCDNURL($justURL);
 	    if ($fileCDNURL !== FALSE) {
 		if (isset($urlParts['query']) && !empty($urlParts['query'])) {
@@ -341,7 +342,8 @@ class S3Plugin {
     function style_loader_src($cssURL) {
 	if (!is_admin()) {
 	    $urlParts = parse_url($cssURL);
-	    $justURL = $urlParts['scheme'] . '://' . $urlParts['host'] . $urlParts['path'];
+	    $urlScheme = array_key_exists('scheme', $urlParts) ? $urlParts['scheme'] . ':' : '';
+	    $justURL = $urlScheme . '//' . $urlParts['host'] . $urlParts['path'];
 	    $fileCDNURL = self::getCDNURL($justURL);
 	    if ($fileCDNURL !== FALSE) {
 		if (isset($urlParts['query']) && !empty($urlParts['query'])) {
