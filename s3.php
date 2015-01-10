@@ -475,7 +475,7 @@ class S3Plugin {
 
     function theContent($the_content) {
 	$id = 0;
-	$post = &get_post($id);
+	$post = get_post($id);
 	if ($post->post_status != 'publish') {
 	    return $the_content;
 	}
